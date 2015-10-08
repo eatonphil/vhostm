@@ -38,7 +38,7 @@ server {{
 
 STATIC_TEMPLATE = """
     # Media: images, icons, video, audio, HTC
-    location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc|mst)$ {{
+    location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc|mst|otf|ttf|woff)$ {{
         root {static_root};
         # expires 1M;
         access_log off;
