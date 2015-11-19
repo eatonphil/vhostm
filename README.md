@@ -42,7 +42,7 @@ both configurable either via command line args or a config file in your home
 directory.
 
 ```bash
-sudo ./spinup.py mysite.com 3000 ./static
+sudo spinup mysite.com 3000 ./static
 ```
 
 #### Delete
@@ -54,7 +54,7 @@ Note: a port argument is required because I can't figure out a good way to
 make it optional dependent on the ["-d", "--delete"] flags existence.
 
 ```bash
-sudo ./spinup.py mysite.com 3000 -d
+sudo spinup mysite.com 3000 -d
 ```
 
 ### Args
