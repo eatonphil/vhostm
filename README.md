@@ -1,16 +1,30 @@
 # Spinup
 
-This script facilitates the creation and deletion of nginx virtual servers
+This python3 script facilitates the creation and deletion of nginx virtual servers
 and hosts file entries.
 
-## Motivation
+### Motivation
 
 It is annoying to set up new virtual servers and hosts file entries by hand
 every time I take on a new client.
 
-# Install
+## Install
 
-Copy spinup.py into /usr/local/bin/.
+### To install from pypi
+
+```bash
+sudo pip install spinup
+```
+
+### To install for development
+
+```bash
+git clone git@github.com:eatonphil/spinup
+cd spinup
+pyvenv .env
+. .env/bin/activate
+pip install -e ./
+```
 
 ## Usage
 
@@ -22,6 +36,10 @@ This one-liner creates a new virtual host at `/etc/hosts/sites-enabled/mysite.co
 that forwards mysite.com to localhost:3000 and serves static files from ./static.
 Additionally, this adds an entry in your hosts file so mysite.com points to
 localhost.
+
+The location of the nginx config file and the location of the hosts file are
+both configurable either via command line args or a config file in your home
+directory.
 
 ```bash
 sudo ./spinup.py mysite.com 3000 ./static
