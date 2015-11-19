@@ -6,7 +6,7 @@ and hosts file entries.
 ## Motivation
 
 It is annoying to set up new virtual servers and hosts file entries by hand
-every time I add a new client.
+every time I take on a new client.
 
 # Install
 
@@ -36,7 +36,7 @@ Note: a port argument is required because I can't figure out a good way to
 make it optional dependent on the ["-d", "--delete"] flags existence.
 
 ```bash
-sudo ./spinup.py mysite.com 0
+sudo ./spinup.py mysite.com 3000 -d
 ```
 
 ### Args
@@ -49,3 +49,15 @@ sudo ./spinup.py mysite.com 0
     * -d, --delete: flag that deletes the site config and hosts entry
     * --nginx_conf_dir [default="/etc/nginx/sites-enabled/"]: the nginx config directory
     * --hosts_file [default="/etc/hosts"]: the hosts file location
+
+### Config file
+
+If you are on an unsupported system (Mac, FreeBSD, etc.) you can create a
+~/.spinup.conf file to store your configurations. Here is an example of my
+~/.spinup.conf file on FreeBSD:
+
+```
+[spinup]
+nginx_conf_dir = /usr/local/etc/nginx/conf.d
+hosts_file = /etc/hosts # Not necessary, just an example
+```
