@@ -8,6 +8,10 @@ and hosts file entries.
 It is annoying to set up new virtual servers and hosts file entries by hand
 every time I add a new client.
 
+# Install
+
+Copy spinup.py into /usr/local/bin/.
+
 ## Usage
 
 ### Example

@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+spinup/__init__.py
+spinup/spinup.py
+spinup.egg-info/PKG-INFO
+spinup.egg-info/SOURCES.txt
+spinup.egg-info/dependency_links.txt
+spinup.egg-info/entry_points.txt
+spinup.egg-info/top_level.txt

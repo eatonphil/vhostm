@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: spinup
+Version: 0.1
+Summary: Spinup nginx virtual servers and hosts file entries.
+Home-page: https://github.com/eatonphil/spinup
+Author: Phil Eaton
+Author-email: me@eatonphil.com
+License: UNKNOWN
+Download-URL: https://github.com/eatonphil/spinup/tarball/0.1
+Description: UNKNOWN
+Keywords: nginx,virtual,hosts
+Platform: UNKNOWN

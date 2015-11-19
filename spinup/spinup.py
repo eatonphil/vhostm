@@ -1,15 +1,18 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """This script facilitates the creation and deletion of nginx virtual servers
 and hosts file entries.
 """
 
 import argparse
+import configparser
 import logging
 import os
 import subprocess
+import sys
 
-DESCRIPTION = "Spinup is a simple tool to create and destroy nginx virtual servers."
+DESCRIPTION = """Spinup is a simple tool to create and destroy nginx virtual
+servers."""
 
 BASE_TEMPLATE = """
 upstream {domain_name} {{
@@ -93,15 +96,50 @@ def add_hosts_entry(hosts_file, domain_name):
 
 
 def main():
+    """Use user config file in home directory if it exists. If it does not,
+    default to sensible system defaults. Command line arguments override both.
+    """
+
+    if os.getuid() != 0:
+        sys.exit("Must be run as root or sudoer")
+
+    sudo_user = os.getenv("SUDO_USER")
+    user_config = "/home/{}/.spinup.conf".format(sudo_user)
+    if sudo_user == "root":
+        user_config = "/root/.spinup.conf"
+
+    nginx_conf_dir = None
+    hosts_file = None
+
+    if os.path.isfile(user_config):
+        config = configparser.ConfigParser()
+        config.read(user_config)
+        config = config["spinup"]
+        hosts_file = config.get("hosts_file")
+        nginx_conf_dir = config.get("nginx_conf_dir")
+
+    # Use system defaults
+    if hosts_file is None:
+        hosts_file = "/etc/hosts"
+
+    if nginx_conf_dir is None:
+        uname = os.uname()[0].lower()
+        if uname == "linux":
+            nginx_conf_dir = "/etc/nginx/sites-enabled"
+
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument("--delete", "-d", action="store_true")
     parser.add_argument("domain_name")
     parser.add_argument("port", type=int)
     parser.add_argument("static_root", default=None, nargs="?")
     parser.add_argument("--nginx_conf_dir", type=str,
-                        default="/etc/nginx/sites-enabled/")
-    parser.add_argument("--hosts_file", type=str, default="/etc/hosts")
+                        default=nginx_conf_dir)
+    parser.add_argument("--hosts_file", type=str, default=hosts_file)
     args = parser.parse_args()
+
+    if args.nginx_conf_dir is None and nginx_conf_dir is None:
+        exit("System not supported by default, must specify --nginx_conf_dir"
+             "and --hosts_file.")
 
     args.nginx_conf_dir = os.path.abspath(args.nginx_conf_dir)
     args.hosts_file = os.path.abspath(args.hosts_file)
