@@ -310,6 +310,9 @@ def get_args():
 
     setattr(args, "nginx_template", nginx_template)
 
+    if args.static_root:
+        args.static_root = abspath(args.static_root)
+
     return args
 
 
