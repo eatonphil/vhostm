@@ -35,25 +35,25 @@ for viewing existing vhosts.
 
 The following defaults are used:
 
-"""
+```json
 {
     "nginx_conf_dir": "/etc/nginx/sites-enabled",
     "hosts_file": "/etc/hosts",
     "vhosts_file": "/etc/vhostm/vhosts.conf"
 }
-"""
+```
 
 To override any of these settings per user, copy the json with the settings
 you wish to override into ~/.vhostm.conf and change the value of the key.
 
 For instance, on FreeBSD, the config (~/.vhostm.conf) may look like this:
 
-"""
+```json
 {
     "nginx_conf_dir": "/usr/local/etc/nginx/conf.d",
     "vhosts_file": "/usr/local/etc/vhostm/vhosts.conf"
 }
-"""
+```
 
 You may also override either of these per command by using the flags
 (--nginx_conf_dir, --vhosts_file, --hosts_file).
