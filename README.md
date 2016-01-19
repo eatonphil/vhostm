@@ -83,3 +83,11 @@ entry from the hosts file.
 ```bash
 sudo vhostm del -d mysite.com
 ```
+
+## Alternative template file
+
+If you would like to provide an alternative template for the nginx
+config, you can override the default by using the --nginx_template_file
+flag or assigning the "nginx_template_file" in the ~/.vhostm.conf file.
+
+Use the default template in vhostm/vhostm.py as an example.
