@@ -1,3 +1,12 @@
-dist
+// Artifacts
+.*
+!*.gitignore
+
+// Emacs artifacts
+*~
+\#*\#
+*_flymake.*
+
+// Python artifacts
 *.pyc
-spinup.egg-info
+*.egg-info*
