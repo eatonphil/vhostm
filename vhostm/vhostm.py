@@ -129,7 +129,7 @@ def vhostm_gen(config):
     for vhost_str in vhosts["vhosts"]:
         vhost = Vhost.read(vhost_str)
 
-        hosts += "{}\t{}\n".format(vhost.domain, vhost.address)
+        hosts += "{}\t{}\n".format(vhost.address, vhost.domain)
 
         # Write nginx config file
         with open(join(config.nginx_conf_dir, vhost.domain), "w+") as f:
