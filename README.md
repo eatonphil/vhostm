@@ -1,4 +1,4 @@
-# vhostm (previously spinup)
+# vhostm
 
 This python3 script facilitates the creation and deletion of nginx virtual servers
 and hosts file entries.
